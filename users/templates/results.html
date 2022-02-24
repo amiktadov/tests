@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if sessions %}
+
+
+        <div class="container">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <br><br><br><br>
+
+                {% for session in sessions %}
+
+                <div class="card">
+                    <div class="card-header">
+                        <h1>{{session.test.text}}</h1>
+                        <p class="m-0"><sub>{{ session.date_finished }}</sub></p>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-striped m-0" style="background-color: rgba(0, 0, 0, 0.1);">
+                            {% for answer in session.user_answers.all %}
+                            <tr>
+                                <td>{{ answer.answer.text }}</td>
+                                <td>{% if answer.answer.is_true %}Правильно{% else %}Не правильно{% endif %}</td>
+                                <td style="background-color:{% if answer.answer.is_true %}darkgreen{% else %}darkred{% endif %};"></td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <h2 style="display: flex; justify-content: flex-end;">
+                            {{session.count_true}} из {{ session.user_answers.count }}
+                        </h2>
+                    </div>
+                </div><br><br>
+
+                {% endfor %}
+
+            </div>
+        </div>
+        
+            
+    {% endif %}
+
+{% endblock %}
+

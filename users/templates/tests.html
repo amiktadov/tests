@@ -1,0 +1,28 @@
+
+	{% extends 'base.html' %}
+    
+    {% block content %}
+    <!-- main -->
+
+
+<div class="container">
+	<div class="mx-auto pt-5">
+		{% if tests %}
+
+			{% for test in tests %}
+			<a href="{% url 'session_create' test.pk %}" class="btn btn-outline-dark" style="display: block; margin: 20px 0;">{{ test }}</a>
+			{% empty %}
+			ничо нет пака что
+			{% endfor %}
+
+		{% endif %}
+
+	</div>
+</div>
+
+                
+
+
+	<!-- //main -->
+
+    {% endblock %}

@@ -1,0 +1,27 @@
+.viewer {
+  height: 400px;
+}
+.w-min-content {
+  width: min-content;
+}
+.w-full {
+  width: -webkit-fill-available;
+}
+.h-full {
+  height: -webkit-fill-available;
+}
+.t-r {
+  text-align: right;
+}
+.t-l {
+  text-align: left;
+}
+.scroll-y {
+  overflow-y: auto;
+}
+.img-div {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 400px;
+}

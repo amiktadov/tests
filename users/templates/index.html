@@ -1,0 +1,54 @@
+
+	{% extends 'base.html' %}
+    
+    {% block content %}
+	
+			{% if session.user_answers %}
+			<div class="">
+				<h1>{{ session.test.text }}</h1>
+				<table class="table table-striped" style="background-color: rgba(0, 0, 0, 0.1);">
+					<thead>
+						<td>Вопрос:</td>
+						<td>Ответ:</td>
+						<td></td>
+					</thead>
+					{% for answer in session.user_answers.all %}
+					<tr>
+						<td>{{ answer.answer.question.text }}</td>
+						<td>{{ answer.answer.text }}</td>
+						<td style="background-color:{% if answer.answer.is_true %}darkgreen{% else %}darkred{% endif %};"></td>
+					</tr>
+					{% endfor %}
+				</table>
+				<h2 style="display: flex; justify-content: flex-end;">{{ session.count_true }} из {{ session.user_answers.count}}</h2>
+			</div><br>
+			{% endif %}
+
+
+			{% if sessions %}
+			<div class="agileits-top">
+				{% for session in sessions %}
+				<h1>{{session.test.text}}</h1>
+				<p><sub>{{ session.date_finished }}</sub></p><br>
+                <table class="table table-striped" style="background-color: rgba(0, 0, 0, 0.1);">
+					{% for answer in session.user_answers.all %}
+					<tr>
+						<td>{{ answer.answer.text }}</td>
+						<td>{% if answer.answer.is_true %}Правильно{% else %}Не правильно{% endif %}</td>
+						<td style="background-color:{% if answer.answer.is_true %}darkgreen{% else %}darkred{% endif %};"></td>
+					</tr>
+					{% endfor %}
+				</table>
+				<h2 style="display: flex; justify-content: flex-end;">
+
+					
+					{{session.count_true}} из {{ session.user_answers.count }}
+
+					</h2>
+				<br><br>
+				{% endfor %}
+				
+			{% endif %}
+
+
+    {% endblock %}
